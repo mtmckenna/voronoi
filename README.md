@@ -1,6 +1,6 @@
 ## Purpose
 
-This project creates interactive Voronoi diagram edges. [Here is a blog post describing the project](https://www.mtmckenna.com/posts/2023/06/16/voronoi-diagrams).
+This project creates interactive Voronoi diagram edges. [Here is a blog post describing the project](https://www.mtmckenna.com/posts/2023/06/16/voronoi-diagrams). [A live version is running here](https://voronoijs.netlify.app/).
 
 <img width="525" alt="Screenshot 2023-06-16 at 10 20 49 PM" src="https://github.com/mtmckenna/voronoi/assets/361430/f57ca3c9-a963-4188-9495-cc2c2c41267c">
 
