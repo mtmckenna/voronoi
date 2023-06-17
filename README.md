@@ -1,15 +1,10 @@
 ## Purpose
 
-This project created interactive Voronoi diagram edges. Here is a blog post describing the project.
+This project creates interactive Voronoi diagram edges. [Here is a blog post describing the project](https://www.mtmckenna.com/posts/2023/06/16/voronoi-diagrams).
 
-The purpose of this project is to help make building [JS13k](https://js13kgames.com/) projects easier for folks who are familiar with the JavaScript ecosystem but don't want to go through the hassle of setting up a JS13k-specific build environment. The bulk of this project is a [Webpack](https://webpack.js.org/) config that does the following: 
+<img width="525" alt="Screenshot 2023-06-16 at 10 20 49 PM" src="https://github.com/mtmckenna/voronoi/assets/361430/f57ca3c9-a963-4188-9495-cc2c2c41267c">
 
-- Transpiles TypeScript (if any)
-- Minifies the resulting JavaScript
-- Inlines the JavaScript into an `index.html` file (in production)
-- Zips the `index.html` file
-- Checks that the zip file is under 13k
-- Runs `webpack-bundle-analyzer`
+The project boilerplate is taken from [js13k-webpack-typescript-starter-party](https://github.com/mtmckenna/js13k-webpack-typescript-starter-party).
 
 ## Requirements
 
