@@ -80,7 +80,7 @@ function drawVoronoiPoints(ctx: CanvasRenderingContext2D, points: IPoint[]) {
         ctx.fill();
     }
 }
-function voronoiEdgesOfDelaunayTriangles(triangles: ITriangleInMesh[]): IEdge[] {
+function voronoiEdgesOfDelaunayTriangles(triangles: ITriangleInTriangulation[]): IEdge[] {
     // calculate neighbors on each triangle
     for (const triangle of triangles) {
         const neighbors = neighborDelaunayTriangles(triangle, triangles);
@@ -239,24 +239,24 @@ function circumscribingTriangle(circle: ICircle): ITriangle {
 }
 
 // https://www.gorillasun.de/blog/bowyer-watson-algorithm-for-delaunay-triangulation/#the-super-triangle
-function triangulate(vertices: IPoint[]): ITriangleInMesh[] {
+function triangulate(vertices: IPoint[]): ITriangleInTriangulation[] {
     // Create bounding 'super' triangle
     const superTriangle = circumscribingTriangle(circleFromPoints(vertices));
     const superDelaunayTriangle = { circumcircle: circumcircleOfTriangle(superTriangle), neighbors: [], ...superTriangle};
 
     // Initialize triangles while adding bounding triangle
-    let triangles: ITriangleInMesh[] = [superDelaunayTriangle];
+    let triangles: ITriangleInTriangulation[] = [superDelaunayTriangle];
 
-    // Add each vertex to the triangle mesh
+    // Add each vertex to the triangulation
     vertices.forEach((vertex) => {
-        triangles = addVertexToTriangleMesh(vertex, triangles);
+        triangles = addVertexToTriangulation(vertex, triangles);
     });
 
     return triangles;
 };
 
 
-function addVertexToTriangleMesh(vertex: IPoint, triangles: ITriangleInMesh[]): ITriangleInMesh[] {
+function addVertexToTriangulation(vertex: IPoint, triangles: ITriangleInTriangulation[]): ITriangleInTriangulation[] {
     let edges = [];
 
     // Remove triangles with circumcircles containing the vertex
@@ -330,8 +330,8 @@ function roadFromEdge(edge: IEdge): Road {
 
 }
 
-function neighborDelaunayTriangles(targetTriangle: ITriangleInMesh, triangles: ITriangleInMesh[]): ITriangleInMesh[] {
-    const neighbors: ITriangleInMesh[] = [];
+function neighborDelaunayTriangles(targetTriangle: ITriangleInTriangulation, triangles: ITriangleInTriangulation[]): ITriangleInTriangulation[] {
+    const neighbors: ITriangleInTriangulation[] = [];
 
     for (const triangle of triangles) {
         if (isNeighborTriangle(targetTriangle, triangle)) {
@@ -433,9 +433,9 @@ interface ITriangle {
     v2: IPoint;
 }
 
-interface ITriangleInMesh extends ITriangle{
+interface ITriangleInTriangulation extends ITriangle{
     circumcircle: ICircle;
-    neighbors: ITriangleInMesh[];
+    neighbors: ITriangleInTriangulation[];
 }
 export interface IGameObject {
     pos: IPoint;
